@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
+  "type": "module",
   "scripts": {
+    "start": "live-server",
+    "build": "rollup -c --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,5 +18,11 @@
   "bugs": {
     "url": "https://github.com/JuliaMorokina/books-library/issues"
   },
-  "homepage": "https://github.com/JuliaMorokina/books-library#readme"
+  "homepage": "https://github.com/JuliaMorokina/books-library#readme",
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "eslint": "^8.56.0",
+    "rollup": "^4.9.5",
+    "rollup-plugin-import-css": "^3.4.0"
+  }
 }
