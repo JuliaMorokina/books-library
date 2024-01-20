@@ -27,7 +27,7 @@ export class MainView extends AbstarctView {
 
   renderHeader() {
     const header = new Header(this.appState).render();
-    this.app.prepend(header);
+    this.app.before(header);
   }
 
   appStateHook(path) {

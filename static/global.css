@@ -1,0 +1,11 @@
+:root {
+  --bl-black: #121212;
+  --bl-white: #fafafa;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  color: var(--bl-black);
+  font-family: "Open Sans", sans-serif;
+}
