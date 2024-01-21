@@ -1,7 +1,11 @@
 import { MainView } from "./views/main/main";
+import { SearchView } from "./views/search/search";
 
 class App {
-  routes = [{ path: "", view: MainView }];
+  routes = [
+    { path: "", view: MainView },
+    { path: "#search", view: SearchView },
+  ];
   appState = {
     favorites: [],
   };

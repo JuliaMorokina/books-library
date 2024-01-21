@@ -1,5 +1,7 @@
 import { AbstarctComponent } from "../../common/component";
 
+import "./image.css";
+
 export class Image extends AbstarctComponent {
   path = "";
   alt = "";

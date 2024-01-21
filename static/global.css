@@ -1,6 +1,11 @@
 :root {
   --bl-black: #121212;
+  --bl-black-50: #252525;
   --bl-white: #fafafa;
+  --bl-grey: #dedede;
+  --bl-card-bgr: #b8b8b8;
+  --bl-border-radius-small: 5px;
+  --bl-border-radius-medium: 8px;
 }
 
 body {

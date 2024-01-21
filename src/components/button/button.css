@@ -1,0 +1,28 @@
+.button {
+  display: flex;
+  align-items: center;
+
+  min-width: 56px;
+  height: 56px;
+  border: none;
+  border-radius: var(--bl-border-radius-small);
+  cursor: pointer;
+}
+
+.icon,
+.button-text {
+  justify-content: center;
+}
+
+.button-text {
+  background-color: transparent;
+}
+
+.button-primary {
+  background-color: var(--bl-black);
+}
+
+.button_white {
+  background-color: var(--bl-white);
+  color: var(--bl-black);
+}

@@ -1,0 +1,9 @@
+.search {
+  width: 100%;
+  padding-top: 20px;
+  padding-bottom: 50px;
+}
+
+.search .button {
+  margin-left: 10px;
+}
