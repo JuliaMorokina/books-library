@@ -1,3 +1,4 @@
+import onChange from "on-change";
 import { AbstarctComponent } from "../../common/component";
 
 import { Button } from "../button";
@@ -5,10 +6,33 @@ import { Image } from "../image";
 import { Title } from "../title";
 
 export class Card extends AbstarctComponent {
-  constructor(book, isFavorite) {
+  favoriteBtn = null;
+
+  constructor(appState, book) {
     super("li");
+    this.appState = appState;
+    this.appState = onChange(this.appState, this.appStateHook.bind(this));
     this.book = book;
-    this.isFavorite = isFavorite;
+  }
+
+  get isFavorite() {
+    return this.appState.favorites.includes(this.book);
+  }
+
+  addFavorite() {
+    this.appState.favorites.push(this.book);
+  }
+
+  deleteFavorite() {
+    const { favorites = [] } = this.appState;
+    this.appState.favorites = favorites.filter((b) => b.key !== this.book.key);
+  }
+
+  handleClick() {
+    if (this.isFavorite) {
+      return this.deleteFavorite();
+    }
+    return this.addFavorite();
   }
 
   render() {
@@ -23,9 +47,10 @@ export class Card extends AbstarctComponent {
     const bookTag = document.createElement("div");
     const author = document.createElement("div");
     const wrapper = document.createElement("div");
-    const favoriteBtn = new Button({
+    this.favoriteBtn = new Button({
       variant: "text",
       className: this.isFavorite ? "button_white" : "",
+      handleClick: this.handleClick.bind(this),
     }).render();
     const btnIcon = new Image({
       path: this.isFavorite
@@ -37,7 +62,7 @@ export class Card extends AbstarctComponent {
 
     author.innerText = this.book.author_name[0] ?? "Не задано";
     bookTag.innerText = this.book.subject[0] ?? "Не задано";
-    favoriteBtn.append(btnIcon);
+    this.favoriteBtn.append(btnIcon);
 
     author.classList.add("book-author");
     bookTag.classList.add("book-tags");
@@ -46,10 +71,21 @@ export class Card extends AbstarctComponent {
     wrapper.append(bookTag);
     wrapper.append(title);
     wrapper.append(author);
-    wrapper.append(favoriteBtn);
+    wrapper.append(this.favoriteBtn);
     this.el.append(image);
     this.el.append(wrapper);
 
     return this.el;
+  }
+
+  destroy() {
+    this.el.innerHTML = "";
+  }
+
+  appStateHook(path) {
+    if (path === "favorites") {
+      this.destroy();
+      this.render();
+    }
   }
 }

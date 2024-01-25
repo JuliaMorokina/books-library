@@ -13,6 +13,7 @@ export class Button extends AbstarctComponent {
     type = "button",
     variant = "default",
     className = "",
+    handleClick = () => {},
   }) {
     super("button");
 
@@ -20,6 +21,7 @@ export class Button extends AbstarctComponent {
     this.title = title;
     this.type = type;
     this.variant = variant;
+    this.handleClick = handleClick;
   }
 
   render() {
@@ -31,7 +33,12 @@ export class Button extends AbstarctComponent {
     }
     this.el.classList.add(buttonVariants[this.variant]);
     this.el.setAttribute("type", this.type);
+    this.el.addEventListener("click", this.handleClick);
 
     return this.el;
+  }
+
+  destroy() {
+    this.el.remove();
   }
 }

@@ -14,7 +14,7 @@ export class Menu extends AbstarctComponent {
         className: "bold",
         counter: false,
         icon: "/static/search.svg",
-        link: "#search",
+        link: "/",
         title: "Поиск книг",
       },
       {

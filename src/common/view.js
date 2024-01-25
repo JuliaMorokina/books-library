@@ -1,28 +1,18 @@
-import { Header } from "../components/header";
-
 export class AbstarctView {
-  header = null;
-
-  constructor() {
+  constructor(appState) {
     this.app = document.getElementById("root");
+    this.appState = appState;
   }
 
   setTitle(title) {
     document.title = title;
   }
 
-  renderHeader() {
-    this.header = new Header(this.appState).render();
-    this.app.before(this.header);
-  }
-
   render() {
-    this.renderHeader();
     return;
   }
 
   destroy() {
-    this.header.remove();
     this.app.innerHTML = "";
     return this.app;
   }

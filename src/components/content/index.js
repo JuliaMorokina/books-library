@@ -5,15 +5,18 @@ import { Container } from "../container";
 import { Spinner } from "../spinner";
 import { Title } from "../title";
 
-import { loadingStates } from "../../consts";
+import { MESSAGES, loadingStates } from "../../consts";
 
 import "./content.css";
+import { Message } from "../message";
 export class Content extends AbstarctComponent {
   content = "";
 
-  constructor(state) {
+  constructor(appState, state, messages = MESSAGES) {
     super("div");
+    this.appState = appState;
     this.state = state;
+    this.messages = messages;
   }
 
   renderContent() {
@@ -22,13 +25,17 @@ export class Content extends AbstarctComponent {
         this.content = new Spinner().render();
         break;
       case loadingStates.loaded:
-        this.content = new CardList(this.state.list).render();
+        if (this.state.list.length > 0) {
+          this.content = new CardList(this.appState, this.state.list).render();
+        } else {
+          this.content = new Message(this.messages.empty).render();
+        }
         break;
       case loadingStates.failed:
-        this.content = "error";
+        this.content = new Message(this.messages.error, "danger").render();
         break;
       default:
-        this.content = "";
+        this.content = new Message(this.messages.default).render();
     }
 
     return this.content;

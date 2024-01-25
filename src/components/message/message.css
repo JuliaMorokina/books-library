@@ -1,0 +1,7 @@
+.message {
+  font-size: 20px;
+}
+
+.message_danger {
+  color: var(--bl-danger);
+}

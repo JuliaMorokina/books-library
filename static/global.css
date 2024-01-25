@@ -4,6 +4,7 @@
   --bl-white: #fafafa;
   --bl-grey: #dedede;
   --bl-card-bgr: #b8b8b8;
+  --bl-danger: rgb(178, 19, 19);
   --bl-border-radius-small: 5px;
   --bl-border-radius-medium: 8px;
 }

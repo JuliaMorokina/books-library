@@ -5,13 +5,14 @@ import "./card-list.css";
 
 export class CardList extends AbstarctComponent {
   list = [];
-  constructor(list = []) {
+  constructor(appState, list = []) {
     super("ul");
+    this.appState = appState;
     this.list = list;
   }
 
   renderCard(book) {
-    const card = new Card(book);
+    const card = new Card(this.appState, book);
     return card.render();
   }
 

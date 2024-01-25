@@ -8,7 +8,7 @@ import { booksSearch } from "../../api";
 
 import { loadingStates } from "../../consts";
 
-export class SearchView extends AbstarctView {
+export class MainView extends AbstarctView {
   content = null;
   state = {
     loading: loadingStates.init,
@@ -21,7 +21,6 @@ export class SearchView extends AbstarctView {
   constructor(appState) {
     super();
     this.appState = appState;
-    this.appState = onChange(this.appState, this.appStateHook.bind(this));
     this.state = onChange(this.state, this.stateHook.bind(this));
     this.setTitle("Поиск книг");
   }
@@ -53,12 +52,15 @@ export class SearchView extends AbstarctView {
     if (this.content) {
       this.content.remove();
     }
-    this.content = new Content({ loading, list, numFound }).render();
+    this.content = new Content(this.appState, {
+      loading,
+      list,
+      numFound,
+    }).render();
     this.app.append(this.content);
   }
 
   render() {
-    super.render();
     const searchBlock = new Search(
       this.state.search,
       this.onChangeSearch.bind(this)
@@ -75,9 +77,5 @@ export class SearchView extends AbstarctView {
     if (path === "loading" || path === "list" || path === "numFound") {
       this.renderContent(this.state);
     }
-  }
-
-  appStateHook(path) {
-    console.log(path);
   }
 }

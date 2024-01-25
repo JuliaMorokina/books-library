@@ -39,7 +39,6 @@ export class Header extends AbstarctComponent {
     const menu = this.renderMenu();
     const container = this.renderContainer();
 
-    this.el.innerHTML = "";
     this.el.classList.add("header");
 
     container.append(logo);
